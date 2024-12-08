@@ -1,0 +1,7 @@
+=== Maze Generator === 
+
+1. Pentru a crea maze-urile am ales algoritmul Depth-first search (DFS) intrucat 
+   in comparatie cu alte algoritmuri in testare si practica DFS se descurca cel mai bine.
+   Unicul minus este ca indiferent de marime toate maze-urile sunt uniforme. 
+   Practic acceasi densitate. De exemplu, grosimea peretilor este permanent de o 
+   singura unitate. Nu sunt pereti mai grosi sau path-uri mai deschide. 
