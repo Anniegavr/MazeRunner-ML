@@ -11,3 +11,9 @@
    generate la cativa pasi unul de altul. Ca sa pastram relevanta fiecarui maze, 
    folosim functia optimal_distance, care in dependenta de marimea maze-ului, creaza
    o distanta optimala intre Start point si Exit point
+
+=== Utilities ===
+
+1. In utils.py introducem algoritmul A* intrucat in comparatie cu dijkstra algorithm,
+   A* este mai efectiv si mai rapid. A* va fi folosit pentru depistarea "the shortest path",
+   pe care Q-learning agent va trebui sa o gaseasca aswell.
