@@ -12,6 +12,16 @@ After some researching found out the optimal ML agent methods to accomplish the 
 During the course of the project should, or at least try, develope these agent methods. 
 
 === Main ===
-
 This section will have consistent ideas, tasks, and updates based on the projet progress.
+
+The data extraction points for the dataset are: 
+1. Episodes = Number of episodes till the AI finds the best route
+2. Maze Size = Ex: 31x31, 41x41
+3. Maze type(optional) = Ex: Patrat, Dreptunghiular, Circular (Mai vedem de care)
+4. Branching factor =  The average number of options (or paths) available per cell. Higher branching means more choices at each step, which could increase complexity.
+5. Distance = Solution path length
+6. Maze symmetry = the degree of mirroring or repetition in the structure of the maze
+7. Dead Ends = the amount of dead ends per maze
+8. Maze Density = how "full" or "cluttered" a maze is with walls compared to open valid spaces
+9. Success rate = if the agent can make it in the offered number of episodes
 
