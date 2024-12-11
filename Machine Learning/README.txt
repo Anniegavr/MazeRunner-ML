@@ -25,3 +25,8 @@ The data extraction points for the dataset are:
 8. Maze Density = how "full" or "cluttered" a maze is with walls compared to open valid spaces
 9. Success rate = if the agent can make it in the offered number of episodes
 
+Q_Learning.py UPDATE:
+  The file now has the option to take the maze as input in the __main__ and you can get the agent's performances
+  results as output.
+  Mazes were created locally, they will be uploaded later on. 
+
