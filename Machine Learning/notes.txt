@@ -17,3 +17,10 @@
 1. In utils.py introducem algoritmul A* intrucat in comparatie cu dijkstra algorithm,
    A* este mai efectiv si mai rapid. A* va fi folosit pentru depistarea "the shortest path",
    pe care Q-learning agent va trebui sa o gaseasca aswell.
+
+
+=== Q-Learning ===
+
+1.Dupa development-ul final al Q-learning agent am observat ca resultatele difera daca te joci cu learning_rate si        epsilon. Cand learning_rate este mai mare resulatele sunt mai bune, cand epsilon este mai mare resultatele sunt mai 
+  putin bune. In mod normal asa si ar trebui sa fie intrucat epsilon raspunde de explorare, learning rate de invatarea
+  path-urilor mai bune. Daca incerc sa ma joc cu reward-urile, resultatele nu se schimba. 
