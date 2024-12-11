@@ -21,6 +21,14 @@
 
 === Q-Learning ===
 
-1.Dupa development-ul final al Q-learning agent am observat ca resultatele difera daca te joci cu learning_rate si        epsilon. Cand learning_rate este mai mare resulatele sunt mai bune, cand epsilon este mai mare resultatele sunt mai 
-  putin bune. In mod normal asa si ar trebui sa fie intrucat epsilon raspunde de explorare, learning rate de invatarea
-  path-urilor mai bune. Daca incerc sa ma joc cu reward-urile, resultatele nu se schimba. 
+1. Dupa development-ul final al Q-learning agent am observat ca resultatele difera daca te joci cu learning_rate si epsilon. 
+   Cand learning_rate este mai mare resulatele sunt mai bune, cand epsilon este mai mare resultatele sunt mai 
+   putin bune. In mod normal asa si ar trebui sa fie intrucat epsilon raspunde de explorare, learning rate de invatarea
+   path-urilor mai bune. Daca incerc sa ma joc cu reward-urile, resultatele nu se schimba. 
+
+2. Dupa testarea agentului am depistat capacitatea maxima a agentului in dependenta de marimea maze-ului.
+   Marimea maxima este 31x31, cand agentul ajunge la 41x41 el se blocheaza si ramane in aceleasi pozitii.
+   Chiar daca ma joc cu learning_rate, epsilon, si reward, resultatul nu se schimba. 
+
+   Concluzie: Q-Learning nu are capacitate sa se descurce in environment-uri mari din motivul numarului
+              mare de states in Q-table.
