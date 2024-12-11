@@ -6,6 +6,7 @@ from utils import utils
 sys.path.append(os.path.join(os.path.dirname(__file__), 'utils')) #just in case
 
 from utils.maze import Maze
+from utils import data_extraction
 
 class QLearningAgent:
   def __init__(self, maze, learning_rate=0.1, discount_factor=0.9, epsilon=0.2):
@@ -46,13 +47,59 @@ class QLearningAgent:
 
       self.episodes_taken += 1
       self.epsilon = max(self.epsilon * epsilon_decay, epsilon_min) #Less exploration over time
-
+ 
       if ai_path == optimal_path:
         #print(f"AI found the optimal path in episode {episode + 1}!")
         break
         
+  def report_metrics(self):
+    #Training data and extraction data results
+    maze_size = self.maze.grid.shape #Rows and columns
+    branching = data_extraction.branching_factor(self.maze.grid)
+    density = data_extraction.onstruction_density(self.maze.grid)
+    sym = data_extraction.symmetry(self.maze.grid)
+    dead_ends = data_extraction.dead_ends(self.maze.grid)
+    solution_length = utils.md(self.maze.start, self.maze.exit)
+    
+    print("\n=== Maze Metrics ===")
+    print(f"Size: {maze_size}")
+    print(f"Branching Factor: {branching: .2f}")
+    print(f"Density: {density: .2f}")
+    print(f"Symmetry: {sym: .2f}")
+    print(f"Dead ends: {dead_ends}")
+    print(f"Solution Path Length: {solution_length}")
 
+#Train agent and observe the results
+if __name__ == "__main__":
+  #Load the maze from a file
+  maze_file = "mazes/maze_11x11_80.txt"
+  maze_frid, start, exit = load_maze(maze_file)
+  
+  #Initialize the Maze environment 
+  maze = Maze(maze_grid, start, exit)
+  
+  num_runs = 1
+  episode_results = [] #List to store the episodes count for each run
 
+  for run in range(num_runs):
+    #Initialize Q-learning agent
+    agent = QLearningAgent(maze)
+    
+    #Train
+    agent.train(num_episodes=1000)
+    episodes_results.append(agent.episodes_taken)
+    
+  #Report metrics after training
+  print("\nFinal metrics after training:")
+  agent.report_metrics()
+  
+  #Calculate and display the average episodes
+  average_episodes = sum(episodes_results) / len(episodes_results)
+  print(f"\n=== Average Results Over {num_runs} Runs ===")
+  print(f"Average Episodes Taken: {int(average_episodes)}")
+
+  
+  
         
           
     
