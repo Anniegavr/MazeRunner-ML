@@ -4,4 +4,31 @@
    in comparatie cu alte algoritmuri in testare si practica DFS se descurca cel mai bine.
    Unicul minus este ca indiferent de marime toate maze-urile sunt uniforme. 
    Practic acceasi densitate. De exemplu, grosimea peretilor este permanent de o 
-   singura unitate. Nu sunt pereti mai grosi sau path-uri mai deschide. 
+   singura unitate. Nu sunt pereti mai grosi sau path-uri mai deschise. 
+
+2. In momentul crearii maze-urilor inital se putea de lasat Start point si Exit point
+   sa fie in pozitii random, dar in asa mod distanta dintre start si exit poate fie
+   generate la cativa pasi unul de altul. Ca sa pastram relevanta fiecarui maze, 
+   folosim functia optimal_distance, care in dependenta de marimea maze-ului, creaza
+   o distanta optimala intre Start point si Exit point
+
+=== Utilities ===
+
+1. In utils.py introducem algoritmul A* intrucat in comparatie cu dijkstra algorithm,
+   A* este mai efectiv si mai rapid. A* va fi folosit pentru depistarea "the shortest path",
+   pe care Q-learning agent va trebui sa o gaseasca aswell.
+
+
+=== Q-Learning ===
+
+1. Dupa development-ul final al Q-learning agent am observat ca resultatele difera daca te joci cu learning_rate si epsilon. 
+   Cand learning_rate este mai mare resulatele sunt mai bune, cand epsilon este mai mare resultatele sunt mai 
+   putin bune. In mod normal asa si ar trebui sa fie intrucat epsilon raspunde de explorare, learning rate de invatarea
+   path-urilor mai bune. Daca incerc sa ma joc cu reward-urile, resultatele nu se schimba. 
+
+2. Dupa testarea agentului am depistat capacitatea maxima a agentului in dependenta de marimea maze-ului.
+   Marimea maxima este 31x31, cand agentul ajunge la 41x41 el se blocheaza si ramane in aceleasi pozitii.
+   Chiar daca ma joc cu learning_rate, epsilon, si reward, resultatul nu se schimba. 
+
+   Concluzie: Q-Learning nu are capacitate sa se descurce in environment-uri mari din motivul numarului
+              mare de states in Q-table.
