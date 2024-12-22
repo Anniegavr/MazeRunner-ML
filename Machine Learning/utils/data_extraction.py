@@ -55,6 +55,7 @@ def symmetry(maze):
       right_half = maze[i][cols // 2 + 1:] #Skip the middle line
     if np.array_equal(left_half, right_half):
       vertical_symmetry_count += 1
+    vertical_symmetry = vertical_symmetry_count / rows
    
   # Calculate Horizontal Symmetry
     horizontal_symmetry_count = 0

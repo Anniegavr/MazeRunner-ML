@@ -2,12 +2,12 @@ import os
 import csv
 import numpy as np
 
-from utils.utils import load_maze_from_file, a_star, md
+from utils.utils import load_maze, a_star, md
 from utils.data_extraction import branching_factor, obstruction_density, symmetry, dead_end
-from utilities.maze import Maze
+from utils.maze import Maze
 from Q_Learning import QLearningAgent
 
-def procces_all_mazes(directory, output_file, num_runs=10, episode_limit=500):
+def process_all_mazes(directory, output_file, num_runs=10, episode_limit=500):
   #List to store result
   results = []
   
@@ -43,8 +43,8 @@ def procces_all_mazes(directory, output_file, num_runs=10, episode_limit=500):
         episodes_results.append(agent.episodes_taken)
     
     #Calculate averages success rate
-    avg_episodes = np.mean(epsiode_results)
-    success_rate = (success_runs / num_runs) * 100 #Convert to percentage
+    avg_episodes = np.mean(episodes_results)
+    success_rate = (successful_runs / num_runs) * 100 #Convert to percentage
     
     #Add data to results
     results.append({
@@ -61,23 +61,23 @@ def procces_all_mazes(directory, output_file, num_runs=10, episode_limit=500):
 
     print(f"Processed: {filename} (ID: {maze_id})")
   
-  #Write results to the CSV File
-  with open(output_file), "w", newline="") as csvfile:
-    fieldnames = ["ID", "Size", "Branching Factor", "Density", "Symmetry", "Dead Ends", 
+  # Write results to a CSV file
+    with open(output_file, "w", newline="") as csvfile:
+        fieldnames = ["ID", "Size", "Branching Factor", "Density", "Symmetry", "Dead Ends", 
                       "Solution Path Length", "Average Episodes", "Success Rate (%)"]
-    writer = csv.DictWriter(csv, fieldnames=fieldnames)
-    
-    writer.writeheader()
-    for result in results:
-      writer.writerow(results)
-      
-  print(f"\nResults saved to {output_file}")
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for result in results:
+            writer.writerow(result)
+
+    print(f"\nResults saved to {output_file}")
 
 # Main
 if __name__ == "__main__":
   maze_directory = "mazes"
   output_csv = "results.csv"
-  precess_all_mazes(maze_directory, output_csv, num_runs=10, episode_limit=500 )
+  process_all_mazes(maze_directory, output_csv, num_runs=10, episode_limit=500 )
 
 
 

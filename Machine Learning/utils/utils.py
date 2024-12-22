@@ -1,6 +1,6 @@
 import numpy as np
 import heapq
-from utilities.maze import Maze
+from maze import Maze
 
 def md(a,b):
     #Manhattan Distance or heuristic = |x1 - x2| + |y1 - y2|
@@ -30,9 +30,9 @@ def load_maze(filename):
                 row.append(0) #path
         maze_data.append(row)
 
-   #Convert maze data to a numpy array
-   maze_data = np.array(maze_data)
-   return maze_data, start, exit
+    #Convert maze data to a numpy array
+    maze_data = np.array(maze_data)
+    return maze_data, start, exit
 
 #Calculate the shortest path function A*
 def a_star(maze):
@@ -70,19 +70,7 @@ def a_star(maze):
 
         #Check the 4 possible movements (Up, Down, Left, Right)
         for action in range(4):
-            x, y = current
-            movements = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-            dx, dy = movements[actions]
-            nex_x, new_ y = x + dx, y + dy
-
-            #Check if the next state is a valid one, within bounds and not a wall
-            if 0 <= new_x < len(maze.grid[0]) and 0 <= new_y < len(maze.grid):
-                if maze.grid[nex_x][new_y] == 0: #Walkable space
-                    next_state = (next_x, next_y)
-                else:
-                    continue #Skip if the next state is a a wall
-            else:
-                continue #Skip if out of bounds
+            next_state = maze.move(current, action)  #Get the next valid state based on the action
 
             if next_state in closed_list: #Ignore if the state has already been visited
                 continue

@@ -1,5 +1,5 @@
 import numpy as np
-from utils.utils import md
+from utils import md
 
 class Maze:
     def __init__(self, grid, start, exit):
@@ -34,7 +34,7 @@ class Maze:
         reward = -1 # Defaul penalty for each step
         done = False
         
-        if next_state = exit:
+        if next_state == exit:
           reward = 100
           done = True
         elif distance_to_exit < current_distance:
