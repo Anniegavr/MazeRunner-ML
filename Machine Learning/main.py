@@ -1,7 +1,7 @@
 import os
 import csv
 import numpy as np
-from utilities.data_extraction import symmetry, dead_end
+from utilities.data_extraction import symmetry, dead_end, density
 from utilities.maze import Maze
 from Q_Learning import QLearningAgent
 from utilities.utils import load_maze
@@ -9,7 +9,7 @@ from utilities.utils import load_maze
 def process_all_mazes(directory, output_file, num_runs, episode_limit):
     # Open the CSV file once and write header
     with open(output_file, "w", newline="") as csvfile:
-        fieldnames = ["ID", "Size", "Maze Type", "Orientation", "Agent Type", "Symmetry", "Dead Ends", 
+        fieldnames = ["ID", "Size", "Maze Type", "Orientation", "Agent Type", "Symmetry", "Density", "Dead Ends", 
                       "Solution Path Length", "Average Episodes"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -44,8 +44,10 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                 # Compute maze properties
                 height, width = maze.grid.shape
                 size = (width, height)
-                sym = symmetry(maze.grid)
-                d_ends = dead_end(maze.grid)
+                sym = symmetry(maze.grid) # Symmetry
+                den = density(maze.grid) # Density
+                d_ends = dead_end(maze.grid) # Dead Ends
+
                 
                 # Collect Q-Learning results for different agents
                 agent_types = [
@@ -57,15 +59,11 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                 for agent_type, learning_rate, epsilon in agent_types:
                     episodes_results = []
                     solution_lengths = []
-                    successful_runs = 0  # To track runs within episode limit
+                    
 
                     for run in range(num_runs):
                         agent = QLearningAgent(maze, learning_rate=learning_rate, epsilon=epsilon)
                         agent.train(num_episodes=episode_limit)
-
-                        # Check if the agent solved the maze within the episode limit
-                        if agent.episodes_taken <= episode_limit:
-                            successful_runs += 1
 
                         episodes_results.append(agent.episodes_taken)
                         solution_lengths.append(len(agent.solution_path) if agent.solution_path else 0)
@@ -73,7 +71,6 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                     # Calculate averages and success rate
                     avg_episodes = np.mean(episodes_results)
                     avg_solution_length = np.mean(solution_lengths)
-                    success_rate = (successful_runs / num_runs) * 100  # Convert to percentage
 
                     # Prepare data for this result
                     result = {
@@ -83,6 +80,7 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                         "Orientation": orientation,
                         "Agent Type": agent_type,
                         "Symmetry": round(sym, 2),
+                        "Density": round(den, 2),
                         "Dead Ends": d_ends,
                         "Solution Path Length": int(avg_solution_length),
                         "Average Episodes": int(avg_episodes),
@@ -91,7 +89,7 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                     # Write the result to the CSV file immediately
                     writer.writerow(result)
 
-                    print(f"Processed: {filename} (ID: {maze_id_abbr}, Agent: {agent_type}, Success Rate: {success_rate}%)")
+                    print(f"=== Processed: {filename} ===")
     print(f"\nResults saved to {output_file}")
 
 

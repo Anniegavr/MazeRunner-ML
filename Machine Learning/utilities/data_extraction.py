@@ -1,4 +1,5 @@
 import numpy as np
+import heapq
 
 def branching_factor(maze):
     rows, cols = maze.shape
@@ -73,6 +74,11 @@ def symmetry(maze):
     # Calculate Overall Symmetry (average of vertical and horizontal symmetries)
     overall_symmetry = (vertical_symmetry + horizontal_symmetry) / 2
     return overall_symmetry
+  
+def density(maze):
+    total_cells = maze.size
+    wall_count = np.sum(maze == 1)  # Count cells with walls (#)
+    return wall_count / total_cells
       
     
   

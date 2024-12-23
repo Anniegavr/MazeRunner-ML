@@ -120,4 +120,5 @@ def generate_and_save_mazes(output_folder=OUTPUT_FOLDER):
                     # print(f"Saved {filename}")
 
 generate_and_save_mazes()
+# Ensure valid path
 process_mazes("Machine Learning/mazes", "Machine Learning/mazes")

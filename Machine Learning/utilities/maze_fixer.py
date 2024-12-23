@@ -104,10 +104,3 @@ def process_mazes(directory: str, output_directory: str):
             for row in grid:
                 output_file.write(''.join(row) + '\n')
 
-
-if __name__ == "__main__":
-
-    input_directory = "mazes"  # Replace with your directory path
-    output_directory = "mazes_fixed"  # Directory to save transformed mazes
-
-    process_mazes(input_directory, output_directory)
