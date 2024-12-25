@@ -33,6 +33,10 @@ Determinative: lr = 0.3 epsilon = 0.3
 Student: lr = 0.5 epsilon = 0.1
 Explorer: lr = 0.1 epsilon = 0.5
 
+### Predictions
+At the end of the Exploratory Data Analysis, there is a section for predicting how the agents will do in random mazes. This shall help predicting if it is
+worth training an agent on a maze before getting on with it, as it may take hours and might yield no result sometimes.
+
 ## Main
 
 The data extraction points for the dataset are: 
