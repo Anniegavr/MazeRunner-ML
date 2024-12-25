@@ -3,7 +3,7 @@ Read instructions.txt
 
 ## INTRODUCTION
 
-The main goal of this side of the project is to develope Machine Learning agents who will proceed through different mazes and collect data based on their performances.
+The main goal of this side of the project is to develop Machine Learning agents who will proceed through different mazes and collect data based on their performances.
 After some researching found out the optimal ML agent methods to accomplish the task, they are:
 1. Q_learning 
 2. Actor-Critic
@@ -12,20 +12,19 @@ After some researching found out the optimal ML agent methods to accomplish the 
 5. A3C (Asynchronous Advantage Actor-Critic)
 6. AlphaZero (Monte Carlo Tree Search + Deep RL) (Optional, because it’s for super complex environments)
 
-=== Maze ===
-The mazes will be created by three main algorithms: DFS(Depth first Search), Binary Tree, Aldous-Broder. 
-Each has it's maze generation structure and can represent different environment in real life.
+### Maze
+The mazes are created by three main algorithms: DFS(Depth first Search), Binary Tree, Aldous-Broder. 
+Each has its maze generation structure and can represent different environment in real life.
 
 ## AI Features
 
-=== Q-Learning ===
-In trainning and for data extraction we will use 3 different settings for the Q-Learning agent where the learning_rate and epsilon is the difference.
+### Q-Learning
+For training and for data extraction we used 3 different settings for the Q-Learning agent where the learning_rate and epsilon is the difference.
 Determinative: lr = 0.3 epsilon = 0.3
-Stundent: lr = 0.5 epsilon = 0.1
+Student: lr = 0.5 epsilon = 0.1
 Explorer: lr = 0.1 epsilon = 0.5
 
-=== Main ===
-This section will have consistent ideas, tasks, and updates based on the projet progress.
+## Main
 
 The data extraction points for the dataset are: 
 1. Episodes = Number of episodes till the AI finds the best route
