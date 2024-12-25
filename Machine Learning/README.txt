@@ -1,3 +1,6 @@
+=== Run the project ===
+Read instructions.txt
+
 === INTRODUCTION ===
 
 The main goal of this side of the project is to develope Machine Learning agents who will proceed through different mazes and collect data based on their performances.
