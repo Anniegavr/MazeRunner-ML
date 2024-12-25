@@ -94,4 +94,4 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
 if __name__ == "__main__":
     maze_directory = "Machine Learning/mazes"  # Directory containing the maze files
     output_csv = "Machine Learning/maze_results.csv"  # Full path to the CSV file (including folder and name)
-    process_all_mazes(maze_directory, output_csv, num_runs=5, episode_limit=5000)
+    process_all_mazes(maze_directory, output_csv, num_runs=1, episode_limit=2000)
