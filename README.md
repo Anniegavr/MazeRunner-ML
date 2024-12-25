@@ -8,7 +8,7 @@ on how the agents performed, see the "Run the project" section below.
 ## Run the project
 Read instructions.txt
 
-## INTRODUCTION
+## Project Description
 
 The main goal of this side of the project is to develop Machine Learning agents who will proceed through different mazes and collect
 data based on their performances. In real life, this project serves as the bases for robots who will navigate in environments
