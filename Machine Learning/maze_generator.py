@@ -1,11 +1,12 @@
 import random
 import numpy as np
 import os
-from utils.utils import md
+from utilities.utils import md
+from utilities.maze_fixer import process_mazes
 
 MIN_SIZE = 11
 MAX_SIZE = 31
-OUTPUT_FOLDER = "mazes"
+OUTPUT_FOLDER = "Machine Learning/mazes"  # Save maze folder inside the 'Machine Learning' folder
 
 #Depth First Search Algorithm
 def generate_maze_dfs(width, height):
@@ -84,7 +85,7 @@ def save_maze(maze, start, exit, filename):
             f.write(line + "\n")  
 
 def generate_and_save_mazes(output_folder=OUTPUT_FOLDER):
-    os.makedirs(output_folder, exist_ok=True)
+    os.makedirs(output_folder, exist_ok=True)  # Ensure the folder is created
     algorithms = [
         ("DFS", generate_maze_dfs),
         ("BinaryTree", generate_maze_binary_tree),
@@ -116,5 +117,8 @@ def generate_and_save_mazes(output_folder=OUTPUT_FOLDER):
                     # Save the maze
                     filename = os.path.join(output_folder, f"{width}x{height}_{name}_{i+1}.txt")
                     save_maze(maze, start, exit, filename)
-                    print(f"Saved {filename}")
- 
+                    # print(f"Saved {filename}")
+
+generate_and_save_mazes()
+# Ensure valid path
+process_mazes("Machine Learning/mazes", "Machine Learning/mazes")
