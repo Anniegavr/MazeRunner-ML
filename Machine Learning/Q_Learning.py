@@ -52,19 +52,20 @@ class QLearningAgent:
                 self.solution_path = ai_path
                 # print(f"AI found the optimal path in episode {episode + 1}!")
                 break
+    def solution_path_length(self):
+        spl = utils.a_star(self.maze)
+        return len(spl)
         
     def report_metrics(self):
         #Training data and extraction data results
         maze_size = self.maze.grid.shape #Rows and columns
-        branching = data_extraction.branching_factor(self.maze.grid)
         density = data_extraction.obstruction_density(self.maze.grid)
         sym = data_extraction.symmetry(self.maze.grid)
         dead_ends = data_extraction.dead_end(self.maze.grid)
-        solution_length = utils.md(self.maze.start, self.maze.exit)
+        solution_length = self.solution_path_length()
         
         print("\n=== Maze Metrics ===")
         print(f"Size: {maze_size}")
-        print(f"Branching Factor: {branching: .2f}")
         print(f"Density: {density: .2f}")
         print(f"Symmetry: {sym: .2f}")
         print(f"Dead ends: {dead_ends}")
@@ -73,7 +74,7 @@ class QLearningAgent:
 #Train agent and observe the results
 if __name__ == "__main__":
   #Load the maze from a file
-  maze_file = "mazes/11x11_DFS_1.txt"
+  maze_file = "Machine Learning/mazes/11x11_DFS_1.txt"
   maze_grid, start, exit = utils.load_maze(maze_file)
   
   #Initialize the Maze environment 

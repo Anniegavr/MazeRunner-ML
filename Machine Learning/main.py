@@ -47,7 +47,7 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                 sym = symmetry(maze.grid) # Symmetry
                 den = density(maze.grid) # Density
                 d_ends = dead_end(maze.grid) # Dead Ends
-
+                
                 
                 # Collect Q-Learning results for different agents
                 agent_types = [
@@ -58,19 +58,16 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
 
                 for agent_type, learning_rate, epsilon in agent_types:
                     episodes_results = []
-                    solution_lengths = []
-                    
-
+            
                     for run in range(num_runs):
                         agent = QLearningAgent(maze, learning_rate=learning_rate, epsilon=epsilon)
                         agent.train(num_episodes=episode_limit)
 
                         episodes_results.append(agent.episodes_taken)
-                        solution_lengths.append(len(agent.solution_path) if agent.solution_path else 0)
+                        spl = agent.solution_path_length()
 
                     # Calculate averages and success rate
                     avg_episodes = np.mean(episodes_results)
-                    avg_solution_length = np.mean(solution_lengths)
 
                     # Prepare data for this result
                     result = {
@@ -82,7 +79,7 @@ def process_all_mazes(directory, output_file, num_runs, episode_limit):
                         "Symmetry": round(sym, 2),
                         "Density": round(den, 2),
                         "Dead Ends": d_ends,
-                        "Solution Path Length": int(avg_solution_length),
+                        "Solution Path Length": int(spl),
                         "Average Episodes": int(avg_episodes),
                     }
 
