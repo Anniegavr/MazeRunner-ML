@@ -1,9 +1,18 @@
+## Installation
+1. Install PyCharm or VSCode, although the recommended IDE is PyCharm.
+2. Clone the repository and load it as a project in your IDE.
+3. Ensure you also install an engine to run Jupyter Notebooks. Options: Anaconda or embedded Jupyter Notebook engine (for PyCharm).
+4. Whether you want to generate mazes yourself, or to train agents on the generated mazes, or to check on the data analysis 
+on how the agents performed, see the "Run the project" section below.
+
 ## Run the project
 Read instructions.txt
 
 ## INTRODUCTION
 
-The main goal of this side of the project is to develop Machine Learning agents who will proceed through different mazes and collect data based on their performances.
+The main goal of this side of the project is to develop Machine Learning agents who will proceed through different mazes and collect
+data based on their performances. In real life, this project serves as the bases for robots who will navigate in environments
+that constantly change their layouts or which are completely unknown to the humans, such as buildings, caves, markets.
 After some researching found out the optimal ML agent methods to accomplish the task, they are:
 1. Q_learning 
 2. Actor-Critic
@@ -37,3 +46,13 @@ The data extraction points for the dataset are:
 8. Success rate = if the agent can make it in the offered number of episodes
 9. AgentType = Determinative, Student, Explorer
 10. Algorithm = DFS, BinaryTree, Aldous-Broder
+
+## How doe this work?
+The project can be divided in 3 sub-projects:
+1. Maze generation
+2. Agents training in maze-solving
+3. Exploratory data analysis on how the agents perform in different mazes.
+
+When generating mazes, they are saved in Machine Learning/mazes.
+When training agents, the results are saved in Machine Learning/maze_results.csv.
+When doing EDA, the generated csv is automatically found and used by the Jupyter Notebook located in the EDA folder.
