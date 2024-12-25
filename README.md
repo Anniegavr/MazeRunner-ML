@@ -47,7 +47,7 @@ The data extraction points for the dataset are:
 9. AgentType = Determinative, Student, Explorer
 10. Algorithm = DFS, BinaryTree, Aldous-Broder
 
-## How doe this work?
+## How does this work?
 The project can be divided in 3 sub-projects:
 1. Maze generation
 2. Agents training in maze-solving
