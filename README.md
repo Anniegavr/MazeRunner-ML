@@ -1,62 +1,124 @@
-## Installation
-1. Install PyCharm or VSCode, although the recommended IDE is PyCharm.
-2. Clone the repository and load it as a project in your IDE.
-3. Ensure you also install an engine to run Jupyter Notebooks. Options: Anaconda or embedded Jupyter Notebook engine (for PyCharm).
-4. Whether you want to generate mazes yourself, or to train agents on the generated mazes, or to check on the data analysis 
-on how the agents performed, see the "Run the project" section below.
+Maze Navigation with Machine Learning Agents
 
-## Run the project
-Read instructions.txt
+This project focuses on developing Machine Learning agents to navigate through various mazes and collect data on their performance. The insights gained can inform real-life applications such as robots navigating dynamic or unknown environments like buildings, caves, or markets.
+Installation
 
-## Project Description
+    Clone the Repository
+    Clone the project repository to your local machine:
 
-The main goal of this side of the project is to develop Machine Learning agents who will proceed through different mazes and collect
-data based on their performances. In real life, this project serves as the bases for robots who will navigate in environments
-that constantly change their layouts or which are completely unknown to the humans, such as buildings, caves, markets.
-After some researching found out the optimal ML agent methods to accomplish the task, they are:
-1. Q_learning 
-2. Actor-Critic
-3. DQL (Deep Q_learning)
-4. DAC (Deep Actor-Critic)
-5. A3C (Asynchronous Advantage Actor-Critic)
-6. AlphaZero (Monte Carlo Tree Search + Deep RL) (Optional, because it’s for super complex environments)
+git clone https://github.com/Anniegavr/MazeRunner-ML.git
 
-### Maze
-The mazes are created by three main algorithms: DFS(Depth first Search), Binary Tree, Aldous-Broder. 
-Each has its maze generation structure and can represent different environment in real life.
+Create a Virtual Environment
+Create a Python virtual environment to isolate dependencies:
 
-## AI Features
+python -m venv env
 
-### Q-Learning
-For training and for data extraction we used 3 different settings for the Q-Learning agent where the learning_rate and epsilon is the difference.
-Determinative: lr = 0.3 epsilon = 0.3
-Student: lr = 0.5 epsilon = 0.1
-Explorer: lr = 0.1 epsilon = 0.5
+Activate the environment:
 
-### Predictions
-At the end of the Exploratory Data Analysis, there is a section for predicting how the agents will do in random mazes. This shall help predicting if it is
-worth training an agent on a maze before getting on with it, as it may take hours and might yield no result sometimes.
+    On Windows:
 
-## Main
+.\env\Scripts\activate
 
-The data extraction points for the dataset are: 
-1. Episodes = Number of episodes till the AI finds the best route
-2. Maze Size = Ex: 31x31, 41x41
-3. Maze type = Horizontal or Vertical
-4. Distance = Solution path length
-5. Maze symmetry = the degree of mirroring or repetition in the structure of the maze
-6. Dead Ends = the amount of dead ends per maze
-7. Maze Density = how "full" or "cluttered" a maze is with walls compared to open valid spaces
-8. Success rate = if the agent can make it in the offered number of episodes
-9. AgentType = Determinative, Student, Explorer
-10. Algorithm = DFS, BinaryTree, Aldous-Broder
+On macOS/Linux:
 
-## How does this work?
-The project can be divided in 3 sub-projects:
-1. Maze generation
-2. Agents training in maze-solving
-3. Exploratory data analysis on how the agents perform in different mazes.
+    source env/bin/activate
 
-When generating mazes, they are saved in Machine Learning/mazes.
-When training agents, the results are saved in Machine Learning/maze_results.csv.
-When doing EDA, the generated csv is automatically found and used by the Jupyter Notebook located in the EDA folder.
+Install Requirements
+Install all required Python packages from requirements.txt:
+
+pip install -r requirements.txt
+
+Set Up Jupyter Notebook
+If you plan to perform Exploratory Data Analysis (EDA), install Jupyter Notebook:
+
+    pip install notebook
+
+    Recommended IDE
+    For the best experience, use PyCharm, which provides integrated solutions for Python development and Jupyter Notebooks.
+
+Run the Project
+Step 1: Maze Generation
+Generate Mazes Automatically
+
+    Open the maze_generator.py script.
+    Set the desired minimum (MIN) and maximum (MAX) maze sizes in the script.
+    Run the script to generate mazes within the specified size range.
+
+Generate Mazes Manually
+
+    Use the manually_create_maze() function in maze_generator.py.
+    Example parameters:
+        width: Width of the maze.
+        height: Height of the maze.
+        algorithm_name: Name of the maze generation algorithm.
+        start: Starting point (S) coordinates.
+        exit: Exit point (E) coordinates.
+
+Validate Binary Tree Mazes
+
+The Binary Tree algorithm may create mazes with no valid path between the start and exit. To validate and fix these:
+
+    Use the process_mazes(input_dir, output_dir) function.
+        input_dir: Directory with generated mazes.
+        output_dir: Directory to save validated mazes.
+
+Step 2: Test Q-Learning on a Specific Maze
+
+    Open Q_learning.py and locate the if __name__ == "__main__": section.
+    Configure the following variables:
+        maze_file: Path to the maze file for testing.
+        episodes (within agent.train()): Number of episodes for training.
+        num_runs: Number of evaluation runs.
+    Run the script to observe and print the agent's performance results for the specified maze.
+
+Step 3: Evaluate Q-Learning on Multiple Mazes
+
+    Open main.py and locate the if __name__ == "__main__": section.
+    Use the process_all_mazes() function to evaluate all generated mazes:
+        input_dir: Directory containing the generated mazes.
+        csv_path: Path to the CSV file for saving results.
+        runs: Number of runs per maze.
+        episodes: Number of episodes per run.
+    Run the script to process all mazes.
+    Note: Running this script overwrites existing data in the specified CSV file. Back up your data if needed.
+
+Step 4: Run Exploratory Data Analysis (EDA)
+
+    Navigate to the EDA folder and open the Jupyter Notebook using an appropriate tool (e.g., Jupyter Notebook, PyCharm).
+    Ensure all cells are run in the correct order for the analysis to work seamlessly.
+
+Key Features
+Machine Learning Algorithms
+
+    Q-Learning: Tested with three configurations (Determinative, Student, Explorer).
+    Optional Advanced Algorithms:
+        Actor-Critic
+        Deep Q-Learning (DQL)
+        Deep Actor-Critic (DAC)
+        Asynchronous Advantage Actor-Critic (A3C)
+        AlphaZero (for complex environments)
+
+Maze Generation
+
+Mazes are created using:
+
+    DFS (Depth-First Search)
+    Binary Tree
+    Aldous-Broder
+
+Each algorithm represents unique real-life navigation scenarios.
+Data Extraction Points
+
+The dataset includes metrics such as:
+
+    Number of episodes for optimal pathfinding.
+    Maze size and orientation.
+    Solution path length.
+    Symmetry, density, and dead-end counts.
+    Agent performance and success rates.
+
+Notes and Recommendations
+
+    Always validate mazes generated with the Binary Tree algorithm.
+    Ensure directories and file paths are correctly specified.
+    For detailed debugging or advanced analysis, refer to printed logs during script execution.
