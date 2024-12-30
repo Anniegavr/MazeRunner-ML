@@ -115,11 +115,11 @@ Each algorithm represents unique real-life navigation scenarios.
 
 The dataset includes metrics such as:
 
-   Number of episodes for optimal pathfinding.
-   Maze size and orientation.
-   Solution path length.
-   Symmetry, density, and dead-end counts.
-   Agent performance and success rates.
+   * Number of episodes for optimal pathfinding.
+   * Maze size and orientation.
+   * Solution path length.
+   * Symmetry, density, and dead-end counts.
+   * Agent performance and success rates.
 
 ## Notes and Recommendations
 
