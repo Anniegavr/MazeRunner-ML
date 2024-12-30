@@ -1,4 +1,4 @@
-Maze Navigation with Machine Learning Agents
+# Maze Navigation with Machine Learning Agents
 
 This project focuses on developing Machine Learning agents to navigate through various mazes and collect data on their performance. The insights gained can inform real-life applications such as robots navigating dynamic or unknown environments like buildings, caves, or markets.
 Installation
