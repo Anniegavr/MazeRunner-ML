@@ -39,13 +39,13 @@ Activate the environment:
    
 ## Run the Project
 ### Step 1: Maze Generation
-### Generate Mazes Automatically
+#### Generate Mazes Automatically
 
    1. Open the maze_generator.py script.
    2. Set the desired minimum (MIN) and maximum (MAX) maze sizes in the script.
    3. Run the script to generate mazes within the specified size range.
 
-### Generate Mazes Manually
+#### Generate Mazes Manually
 
   1. Use the manually_create_maze() function in maze_generator.py.
      Example parameters:
@@ -55,7 +55,7 @@ Activate the environment:
         * start: Starting point (S) coordinates.
         * exit: Exit point (E) coordinates.
 
-### Validate Binary Tree Mazes
+#### Validate Binary Tree Mazes
 
 The Binary Tree algorithm may create mazes with no valid path between the start and exit. To validate and fix these:
 
