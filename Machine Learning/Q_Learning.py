@@ -59,7 +59,7 @@ class QLearningAgent:
     def report_metrics(self):
         #Training data and extraction data results
         maze_size = self.maze.grid.shape #Rows and columns
-        density = data_extraction.obstruction_density(self.maze.grid)
+        density = data_extraction.density(self.maze.grid)
         sym = data_extraction.symmetry(self.maze.grid)
         dead_ends = data_extraction.dead_end(self.maze.grid)
         solution_length = self.solution_path_length()

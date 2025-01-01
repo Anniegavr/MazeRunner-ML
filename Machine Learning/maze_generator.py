@@ -121,6 +121,48 @@ def save_maze(maze, start, exit, filename):
                     line += "." if cell == 0 else "#"
             f.write(line + "\n")  
 
+def manually_create_maze(width, height, algorithm_name, start, exit):
+    """
+    Manually create a maze with specified parameters.
+
+    Args:
+        width (int): Width of the maze (must be an odd number).
+        height (int): Height of the maze (must be an odd number).
+        algorithm_name (str): Name of the maze generation algorithm ("DFS", "BinaryTree", "AldousBroder").
+        start (tuple): Coordinates of the start point (x, y).
+        exit (tuple): Coordinates of the exit point (x, y).
+
+    Returns:
+        None: Saves the maze to a file in the OUTPUT_FOLDER.
+    """
+    if width % 2 == 0 or height % 2 == 0:
+        raise ValueError("Width and height must be odd numbers to generate a valid maze.")
+    
+    algorithms = {
+        "DFS": generate_maze_dfs,
+        "BinaryTree": generate_maze_binary_tree,
+        "AldousBroder": generate_maze_aldous_broder,
+    }
+    
+    if algorithm_name not in algorithms:
+        raise ValueError(f"Invalid algorithm name. Choose from {list(algorithms.keys())}.")
+    
+    # Generate the maze using the selected algorithm
+    algorithm = algorithms[algorithm_name]
+    maze, generated_start = algorithm(width, height)
+    
+    # Validate start and exit points
+    if maze[start[1], start[0]] != 0:
+        raise ValueError("The specified start point is not on an open cell in the maze.")
+    if maze[exit[1], exit[0]] != 0:
+        raise ValueError("The specified exit point is not on an open cell in the maze.")
+    
+    # Save the manually created maze
+    filename = os.path.join(OUTPUT_FOLDER, f"{width}x{height}_{algorithm_name}_manual.txt")
+    save_maze(maze, start, exit, filename)
+    print(f"Manually created maze saved as {filename}.")
+
+
 def generate_and_save_mazes(output_folder=OUTPUT_FOLDER):
     os.makedirs(output_folder, exist_ok=True)  # Ensure the folder is created
     algorithms = [
@@ -162,7 +204,9 @@ def generate_and_save_mazes(output_folder=OUTPUT_FOLDER):
                     filename = os.path.join(output_folder, f"{width}x{height}_{name}_{i+1}.txt")
                     save_maze(maze, start, exit, filename)
                     # print(f"Saved {filename}")
+                    
 
+# manually_create_maze(41, 41, "DFS", (1, 1), (21, 21))
 generate_and_save_mazes()
 # Ensure valid path
 process_mazes("Machine Learning/mazes", "Machine Learning/mazes")
